@@ -6,7 +6,6 @@ const LoginScreen = ({ onLogin }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simple validation - in real app, you'd validate credentials
     if (email && password) {
       onLogin();
     }
@@ -15,7 +14,6 @@ const LoginScreen = ({ onLogin }) => {
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
       <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
-        {/* Header */}
         <div className="text-center mb-8">
           <div className="inline-block bg-blue-500 text-white px-4 py-2 rounded-lg mb-4">
             <span className="font-semibold">AuthForm</span>
@@ -23,7 +21,6 @@ const LoginScreen = ({ onLogin }) => {
           <h1 className="text-3xl font-bold text-gray-800 mb-2">Welcome Back</h1>
         </div>
 
-        {/* Login Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <input
@@ -55,7 +52,6 @@ const LoginScreen = ({ onLogin }) => {
           </button>
         </form>
 
-        {/* Sign Up Link */}
         <div className="text-center mt-6">
           <p className="text-gray-600">
             Don't have an account?{' '}
