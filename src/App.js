@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import LoginScreen from './components/LoginScreen';
 import Dashboard from './components/Dashboard';
 import TransactionForm from './components/TransactionForm';
@@ -27,19 +27,24 @@ function App() {
     currency: 'ZAR (South African Rand)'
   });
 
-  const handleLogin = () => {
+  // ✅ Stable callback functions - won't cause re-renders
+  const handleLogin = useCallback(() => {
     setCurrentScreen('dashboard');
-  };
+  }, []);
 
-  const handleLogout = () => {
+  const handleLogout = useCallback(() => {
     setCurrentScreen('login');
-  };
+  }, []);
 
-  const navigateToScreen = (screen) => {
+  const navigateToScreen = useCallback((screen) => {
     setCurrentScreen(screen);
-  };
+  }, []);
 
-  const addTransaction = (newTransaction) => {
+  const navigateToDashboard = useCallback(() => {
+    setCurrentScreen('dashboard');
+  }, []);
+
+  const addTransaction = useCallback((newTransaction) => {
     const transaction = {
       ...newTransaction,
       id: Date.now(),
@@ -48,15 +53,15 @@ function App() {
     };
     setTransactions(prev => [transaction, ...prev]);
     setCurrentScreen('dashboard');
-  };
+  }, []);
 
-  const updateUser = (updatedUser) => {
+  const updateUser = useCallback((updatedUser) => {
     setUser(updatedUser);
-  };
+  }, []);
 
-  const updateSettings = (updatedSettings) => {
+  const updateSettings = useCallback((updatedSettings) => {
     setSettings(updatedSettings);
-  };
+  }, []);
 
   const renderScreen = () => {
     switch (currentScreen) {
@@ -75,7 +80,7 @@ function App() {
         return (
           <TransactionForm
             onSave={addTransaction}
-            onBack={() => setCurrentScreen('dashboard')}
+            onBack={navigateToDashboard}  // ✅ Stable function reference
             defaultCategory={settings.defaultCategory}
           />
         );
@@ -86,7 +91,7 @@ function App() {
             settings={settings}
             onUpdateUser={updateUser}
             onUpdateSettings={updateSettings}
-            onBack={() => setCurrentScreen('dashboard')}
+            onBack={navigateToDashboard}  // ✅ Stable function reference
           />
         );
       default:
