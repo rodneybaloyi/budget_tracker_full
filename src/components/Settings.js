@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { DollarSign, ArrowLeft, User, Settings as SettingsIcon, Download, Trash2 } from 'lucide-react';
+import { DollarSign, ArrowLeft, Download, Trash2 } from 'lucide-react';
 
 const Settings = ({ user, settings, onUpdateUser, onUpdateSettings, onBack }) => {
   const [viewMode, setViewMode] = useState('mobile');
-  const [activeTab, setActiveTab] = useState('profile'); // 'profile' or 'settings'
   
   const [profileData, setProfileData] = useState({
     name: user.name,

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Minus, DollarSign, TrendingUp, LogOut, Settings, Edit, BarChart3 } from 'lucide-react';
+import { Plus, DollarSign, TrendingUp, LogOut, Settings, Edit, BarChart3 } from 'lucide-react';
 
 const Dashboard = ({ user, transactions, onLogout, onNavigate }) => {
   const [viewMode, setViewMode] = useState('mobile');

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DollarSign, ArrowLeft, X, Calendar } from 'lucide-react';
+import { DollarSign, ArrowLeft, X } from 'lucide-react';
 
 const TransactionForm = ({ onSave, onBack, defaultCategory = 'Food' }) => {
   const [viewMode, setViewMode] = useState('mobile');
